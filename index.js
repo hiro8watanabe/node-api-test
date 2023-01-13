@@ -20,11 +20,19 @@ const customers = [
 app.get("/api/customers", (req, res) => {
   res.send(customers);
 });
+
 app.post("/api/customers", (req, res) => {
   const customer = {
     name: req.body.name,
     id: customers.length + 1,
   };
   customers.push(customer);
+  res.send(customer);
+});
+
+//customer情報の更新
+app.put("/api/customers/:id", (req, res) => {
+  const customer = customers.find((c) => c.id === parseInt(req.params.id));
+  customer.name = req.body.name;
   res.send(customer);
 });
