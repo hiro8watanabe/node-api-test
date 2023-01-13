@@ -20,4 +20,11 @@ const customers = [
 app.get("/api/customers", (req, res) => {
   res.send(customers);
 });
-
+app.post("/api/customers", (req, res) => {
+  const customer = {
+    name: req.body.name,
+    id: customers.length + 1,
+  };
+  customers.push(customer);
+  res.send(customer);
+});
